@@ -1,0 +1,130 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Apr 01, 2026 at 01:47 PM
+-- Server version: 10.4.34-MariaDB
+-- PHP Version: 8.5.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `cosicol_jasmen`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Appointments`
+--
+
+CREATE TABLE `Appointments` (
+  `appointment_id` int(11) NOT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `doctor_name` varchar(100) NOT NULL,
+  `appointment_date` date NOT NULL,
+  `status` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `Appointments`
+--
+
+INSERT INTO `Appointments` (`appointment_id`, `patient_id`, `doctor_name`, `appointment_date`, `status`) VALUES
+(201, 101, 'Dr. Garcia', '2025-03-10', 'Completed'),
+(202, 102, 'Dr. Ramos', '2025-03-11', 'Scheduled'),
+(203, 101, 'Dr. Cruz', '2025-03-15', 'Scheduled'),
+(204, 103, 'Dr. Garcia', '2025-03-18', 'Cancelled'),
+(205, 106, 'Dr. Ramos', '2025-03-20', 'Scheduled');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Customers`
+--
+
+CREATE TABLE `Customers` (
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(50) DEFAULT NULL,
+  `city` varchar(10) DEFAULT NULL,
+  `membership_level` varchar(10) DEFAULT NULL,
+  `join_date` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `Customers`
+--
+
+INSERT INTO `Customers` (`customer_id`, `customer_name`, `city`, `membership_level`, `join_date`) VALUES
+(1, 'Alice', 'Cebu', 'Gold', '2025-01-10'),
+(2, 'Bob', 'Bohol', 'Silver', '2025-01-15'),
+(3, 'Charlie', 'Cebu', 'Bronze', '2025-02-10'),
+(4, 'Diana', 'Tagbilaran', 'Gold', '2025-02-12'),
+(5, 'Ethan', 'Bohol', 'Silver', '2025-03-01'),
+(6, 'Fiona', 'Cebu', 'Gold', '2025-03-05'),
+(7, 'George', 'Tagbilaran', 'Bronze', '2025-03-08'),
+(8, 'Hannah', 'Cebu', 'Silver', '2025-04-01'),
+(9, 'Ian', 'Bohol', 'Gold', '2025-04-10'),
+(10, 'Julia', 'Cebu', 'Bronze', '2025-04-15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Patients`
+--
+
+CREATE TABLE `Patients` (
+  `patient_id` int(11) NOT NULL,
+  `patient_name` varchar(30) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `contact_number` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `Patients`
+--
+
+INSERT INTO `Patients` (`patient_id`, `patient_name`, `city`, `contact_number`) VALUES
+(101, 'Maria Santos', 'Cebu', '9123456781'),
+(102, 'Juan Dela Cruz', 'Bohol', '9123456782'),
+(103, 'Ana Reyes', 'Cebu', '9123456783'),
+(104, 'Mark Lopez', 'Dumaguete', '9123456784'),
+(105, 'Carla Gomez', 'Bohol', '9123456785');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Appointments`
+--
+ALTER TABLE `Appointments`
+  ADD PRIMARY KEY (`appointment_id`),
+  ADD KEY `patient_id` (`patient_id`);
+
+--
+-- Indexes for table `Customers`
+--
+ALTER TABLE `Customers`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `Patients`
+--
+ALTER TABLE `Patients`
+  ADD PRIMARY KEY (`patient_id`),
+  ADD UNIQUE KEY `contact_number` (`contact_number`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
